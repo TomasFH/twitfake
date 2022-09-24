@@ -1,0 +1,23 @@
+.button {
+    align-items: center;
+    line-height: 30px;
+    background-color: var(--black-color);
+    border: 0;
+    color: #fff;
+    border-radius: 9999px;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 8px 24px;
+    cursor: pointer;
+    transition: opacity .25s ease;
+}
+
+.button:hover {
+    opacity: .7;
+}
+
+.githubIcon {
+    margin: 0 10px;
+    position: relative;
+    top: 5px;
+}
