@@ -94,8 +94,10 @@ export const onAuthStateChange = (onChange) => {
 
       //This 'onChange' is going to be the 'setUser' function that will change the state
       onChange(userInfo);
-      } else {
-        console.log('No user is signed in.');
       }
   });
+};
+
+export const logOut = () => {
+  return signOut(auth);
 };

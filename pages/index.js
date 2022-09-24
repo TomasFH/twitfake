@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import GitHubLogInButton from '../components/GitHubLogInButton'
-import { logInGitHub, onAuthStateChange } from '../firebase/client';
+import { logInGitHub, logOut, onAuthStateChange } from '../firebase/client';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   //GitHub Log In function
-  const onClickHandler = () => {
+  const onClickHandlerLogIn = () => {
     logInGitHub()
         // .then((data) => {
         //     console.log('Desde el botón recibo esta info: ', data);
@@ -26,6 +26,11 @@ export default function Home() {
         .catch((error) => {
             console.log('An error has occurred: ', error);
         });
+  };
+
+  const onClickHandlerLogOut = () => {
+    setUser(null);
+    logOut();
   };
 
   return (
@@ -52,12 +57,13 @@ export default function Home() {
         {/* If user is not Logged In, the Log In buttons are going to be shown */}
           {
             !user ? <div className={styles.buttonContainer}>
-            <GitHubLogInButton onClickHandler={onClickHandler} />
+            <GitHubLogInButton onClickHandler={onClickHandlerLogIn} />
           </div> :
           <div>
             <img src={user.photoURL} alt='img not found' style={{height: '300px'}}/>
             <h3>{user.name}</h3>
             <p>{user.email}</p>
+            <button onClick={onClickHandlerLogOut}>Log out</button>
           </div>
           }
           
